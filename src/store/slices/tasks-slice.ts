@@ -3,11 +3,11 @@ import { Draft } from 'immer';
 import { TaskProps } from '../../components/task/task';
 
 
-interface Timer {
+type Timer = {
   [key: number]: number;
 }
 
-interface TasksState {
+type TasksState = {
   lastId: number;
   tasks: TaskProps[];
   timers: Timer;

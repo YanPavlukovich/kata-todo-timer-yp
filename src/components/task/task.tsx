@@ -8,20 +8,18 @@ import { editTask, removeTask } from '../../store/slices/tasks-slice';
 import Timer from '../timer/timer';
 import EditField from './edit-field';
 
-export interface TaskProps {
+export type TaskProps = {
   id: number;
   label: string;
   createTime: string;
   completed: boolean;
   title: string;
-}
+};
 
 const Task: FC<TaskProps> = ({ id, title, completed, createTime }) => {
   const [editing, setEditing] = useState(false);
   const [taskLabel, setTaskLabel] = useState(title || '');
-  const [formattedCreateTime, setFormattedCreateTime] = useState(
-    formatDistanceToNow(new Date(createTime))
-  );
+  const [formattedCreateTime, setFormattedCreateTime] = useState(formatDistanceToNow(new Date(createTime)));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -65,13 +63,7 @@ const Task: FC<TaskProps> = ({ id, title, completed, createTime }) => {
   return (
     <li className={classNames} key={id}>
       <div className="view">
-        <input
-          className="toggle"
-          type="checkbox"
-          id={`${id}__check`}
-          onChange={onCompleteToggle}
-          checked={completed}
-        />
+        <input className="toggle" type="checkbox" id={`${id}__check`} onChange={onCompleteToggle} checked={completed} />
         <label htmlFor={`${id}__check`}>
           <span className="title">{taskLabel}</span>
           <Timer id={id} />
@@ -81,13 +73,7 @@ const Task: FC<TaskProps> = ({ id, title, completed, createTime }) => {
         <button className="icon icon-destroy" onClick={() => dispatch(removeTask(id))} />
       </div>
 
-      <EditField
-        editing={editing}
-        onTaskEdit={onTaskEdit}
-        onEditEnd={onEditEnd}
-        label={taskLabel}
-        id={id}
-      />
+      <EditField editing={editing} onTaskEdit={onTaskEdit} onEditEnd={onEditEnd} label={taskLabel} id={id} />
     </li>
   );
 };

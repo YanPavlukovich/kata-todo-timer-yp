@@ -1,12 +1,12 @@
 import React from 'react';
 
-interface EditFieldProps {
+type EditFieldProps = {
   onEditEnd: (label: string, id: number) => void;
   editing: boolean;
   label: string;
   onTaskEdit: (e: React.ChangeEvent<HTMLInputElement>) => void;
   id: number;
-}
+};
 
 const EditField: React.FC<EditFieldProps> = ({ onEditEnd, editing, label, onTaskEdit, id }) => {
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {

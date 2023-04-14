@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-interface StateType {
+type StateType = {
 	activeFilter: string;
 }
 
